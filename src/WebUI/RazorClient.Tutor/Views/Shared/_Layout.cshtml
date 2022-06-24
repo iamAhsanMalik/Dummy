@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="STM">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="Atlantic International University, Inc. is a private for-profit distance learning university based in Honolulu, Hawaii. It was founded in December 1998 as Atlantic University, Inc. It offers undergraduate and graduate degrees including doctorates.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <!-- Page Title  -->
+    <title>@ViewData["Title"] - Tutor</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="~/assets/css/dashlite.css?ver=2.9.1">
+    <link id="skin-default" rel="stylesheet" href="~/assets/css/theme.css?ver=2.9.1">
+</head>
+
+<body class="nk-body bg-lighter npc-default has-sidebar ">
+    <div class="nk-app-root">
+        <div class="nk-main ">
+            <partial name="_Sidebar.cshtml" />
+            <div class="nk-wrap ">
+                <partial name="_Header.cshtml" />
+                @RenderBody()
+                <partial name="_Footer.cshtml" />
+                <partial name="_LanguagesPopup.cshtml" />
+            </div>
+        </div>
+    </div>
+    <!-- Start JavaScript Files - Required for Admin Themes -->
+    <script src="~/assets/js/bundle.js?ver=2.9.1"></script>
+    <script src="~/assets/js/scripts.js?ver=2.9.1"></script>
+    <script src="~/assets/js/charts/chart-ecommerce.js?ver=2.9.1"></script>
+    <!-- End JavaScript Files - Required for Admin Themes -->
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace STM.AIU.Application.DTOs.AccountDTOs;
+
+public class UseRecoveryCodeDTO
+{
+  [Required]
+  public string? Code { get; set; }
+
+  public string? ReturnUrl { get; set; }
+}
