@@ -1,0 +1,9 @@
+﻿global using System.Text;
+global using System.Globalization;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.Identity;
+global using System.Text.RegularExpressions;
+global using Microsoft.AspNetCore.Authentication;
+global using System.ComponentModel.DataAnnotations;
+global using STM.AIU.Application.Models;
+global using STM.AIU.Application.DTOs.AccountDTOs;

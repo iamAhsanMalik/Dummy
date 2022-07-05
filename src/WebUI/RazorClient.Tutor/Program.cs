@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using STM.AIU.Application;
 using STM.AIU.Infrastructure;
@@ -6,13 +5,13 @@ using STM.AIU.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews(options => options.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build())));
+builder.Services.AddControllersWithViews(options => options.Filters.Add(new AuthorizeFilter(new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build()))).AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
-// Add the STM.AIU.Application to the container.
-builder.Services.AddApplicationServices();
+// To Enable Kendo Grid Json Serialization => .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null)
+builder.Services.AddKendo();
 
-// Add the STM.AIU.Infrastructure to the container. It is for services registration only
-builder.Services.AddInfrastructureServices(builder.Configuration);
+// Add the STM.AIU.Application and STM.AIU.Infrastructure to the container. Remember that STM.AIU.Infrastructure is for services registration only. 
+builder.Services.AddApplicationServices().AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
 

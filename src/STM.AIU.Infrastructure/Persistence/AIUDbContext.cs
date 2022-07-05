@@ -1,9 +1,3 @@
-
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using STM.AIU.Application.Models;
-
 namespace STM.AIU.Infrastructure.Persistence;
 
 internal class AIUDbContext : IdentityDbContext<ApplicationUser>

@@ -11,6 +11,10 @@ using System.Security.Claims;
 using System.Text;
 #endregion
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
 namespace RazorClient.Tutor.Controllers;
 
 [Authorize]
@@ -20,7 +24,10 @@ public class AccountController : Controller
     private readonly ISmsService _smsSender;
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly UserManager<ApplicationUser> _userManager;
+<<<<<<< HEAD
     private readonly IFileHelpers _fileHelpers;
+=======
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
     private readonly ILogger _logger;
 
     public AccountController(
@@ -28,13 +35,20 @@ public class AccountController : Controller
         ISmsService smsService,
         ILoggerFactory loggerFactory,
         SignInManager<ApplicationUser> signInManager,
+<<<<<<< HEAD
         UserManager<ApplicationUser> userManager, IFileHelpers fileHelpers)
+=======
+        UserManager<ApplicationUser> userManager)
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
     {
         _emailSender = emailService;
         _smsSender = smsService;
         _signInManager = signInManager;
         _userManager = userManager;
+<<<<<<< HEAD
         _fileHelpers = fileHelpers;
+=======
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
         _logger = loggerFactory.CreateLogger<AccountController>();
     }
 
@@ -56,7 +70,11 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginDTO model, string? returnUrl = null)
     {
+<<<<<<< HEAD
         returnUrl ??= Url.Content("/");
+=======
+        returnUrl = returnUrl ?? Url.Content("/");
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
         ViewData["ReturnUrl"] = returnUrl;
         if (ModelState.IsValid)
         {
@@ -106,18 +124,30 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterDTO model, string? returnUrl = null)
     {
+<<<<<<< HEAD
         returnUrl ??= Url.Content(contentPath: "/");
+=======
+        returnUrl = returnUrl ?? Url.Content("/");
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
         ViewData["ReturnUrl"] = returnUrl;
         if (ModelState.IsValid)
         {
             var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+<<<<<<< HEAD
             var registerResult = await _userManager.CreateAsync(user, model.Password);
+=======
+            var registerResult = await _userManager.CreateAsync(user, model.Password); ;
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
 
             if (registerResult?.Succeeded == true)
             {
                 // Send an email with this link to verify newly register account
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+<<<<<<< HEAD
                 var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code }, protocol: HttpContext.Request.Scheme);
+=======
+                var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
                 if (!string.IsNullOrEmpty(user.Email))
                 {
                     await _emailSender.SendEmailAsync(user.Email, "Confirm your email",
@@ -145,7 +175,11 @@ public class AccountController : Controller
     {
         await _signInManager.SignOutAsync();
         _logger.LogInformation(4, "User logged out.");
+<<<<<<< HEAD
         return RedirectToAction(nameof(HomeController.Index), nameof(HomeController));
+=======
+        return RedirectToAction(nameof(HomeController.Index), nameof(AccountController));
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
     }
     #endregion
 
@@ -298,6 +332,7 @@ public class AccountController : Controller
                 {
                     var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+<<<<<<< HEAD
                     var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, passwordResetToken = code }, protocol: Request.Scheme);
                     var emailContent = await _fileHelpers.EmailTemplatesReaderAsync("PasswordReset.html");
                     var emailSubject = emailContent.Replace("$$ResetPasswordLink$$", callbackUrl).Replace("$$CurrentYear$$", DateTime.Now.Year.ToString());
@@ -306,6 +341,15 @@ public class AccountController : Controller
                     return View("ForgotPasswordConfirmation");
                 }
             }
+=======
+                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, emailConfirmationToken = code }, protocol: Request.Scheme);
+                    await _emailSender.SendEmailAsync(model.Email, "Reset Password",
+                    $@"Please reset your password by clicking here: <a href='\{callbackUrl}\'>Reset Password</a>.");
+                    return View("ForgotPasswordConfirmation");
+                }
+            }
+
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
         }
 
         // If we got this far, something failed, redisplay form
@@ -325,10 +369,16 @@ public class AccountController : Controller
     // GET: /Account/ResetPassword
     [HttpGet]
     [AllowAnonymous]
+<<<<<<< HEAD
     public IActionResult ResetPassword(string? passwordResetToken = null)
     {
         return passwordResetToken == null ? View("Error") : View();
         //return View();
+=======
+    public IActionResult ResetPassword(string? code = null)
+    {
+        return code == null ? View("Error") : View();
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
     }
 
     //
@@ -344,12 +394,17 @@ public class AccountController : Controller
         }
         if (!string.IsNullOrEmpty(model.Email))
         {
+<<<<<<< HEAD
+=======
+
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 // Don't reveal that the user does not exist
                 return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
             }
+<<<<<<< HEAD
             if (user != null && !string.IsNullOrEmpty(model.PasswordResetToken))
             {
                 model.PasswordResetToken = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(model.PasswordResetToken));
@@ -363,6 +418,16 @@ public class AccountController : Controller
                     }
                     AddErrors(result);
                 }
+=======
+            if (!string.IsNullOrEmpty(model.Code) && !string.IsNullOrEmpty(model.Password))
+            {
+                var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                }
+                AddErrors(result);
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
             }
         }
         return View();
@@ -535,11 +600,19 @@ public class AccountController : Controller
         {
             result = await _signInManager.TwoFactorAuthenticatorSignInAsync(model.Code, model.RememberMe, model.RememberBrowser);
         }
+<<<<<<< HEAD
         if (result?.Succeeded == true)
         {
             return RedirectToLocal(model.ReturnUrl ?? nameof(HomeController.Index));
         }
         if (result?.IsLockedOut == true)
+=======
+        if (result != null && result.Succeeded)
+        {
+            return RedirectToLocal(model.ReturnUrl ?? nameof(HomeController.Index));
+        }
+        if (result != null && result.IsLockedOut)
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
         {
             _logger.LogWarning(7, "User account locked out.");
             return View(nameof(HomeController.Lockout));
@@ -579,7 +652,11 @@ public class AccountController : Controller
             if (!string.IsNullOrEmpty(model.Code))
             {
                 var result = await _signInManager.TwoFactorRecoveryCodeSignInAsync(model.Code);
+<<<<<<< HEAD
                 if (result?.Succeeded == true)
+=======
+                if (result != null && result.Succeeded)
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
                 {
                     return RedirectToLocal(model.ReturnUrl ?? nameof(HomeController.Index));
                 }
@@ -608,6 +685,10 @@ public class AccountController : Controller
             }
         }
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> ee0e30c0e416df1e5f9dbd31db6a79650283017e
     private IActionResult RedirectToLocal(string returnUrl)
     {
         if (Url.IsLocalUrl(returnUrl))

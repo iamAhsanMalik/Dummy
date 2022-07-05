@@ -1,0 +1,15 @@
+﻿global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Mvc.Rendering;
+global using Microsoft.AspNetCore.WebUtilities;
+global using STM.AIU.Application.Contracts.Infrastructure;
+global using STM.AIU.Application.DTOs.AccountDTOs;
+global using STM.AIU.Application.Models;
+global using System.Security.Claims;
+global using System.Text;
+global using System.Diagnostics;
+global using RazorClient.Tutor.Models;
+global using Microsoft.AspNetCore.Authentication;
+global using STM.AIU.Application.DTOs.ManageDTOs;
+global using STM.AIU.Application.Enums;

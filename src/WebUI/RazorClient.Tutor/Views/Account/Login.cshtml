@@ -1,12 +1,5 @@
-﻿@using System.Collections.Generic
-@using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Authentication
-@using Microsoft.AspNetCore.Identity
-@using STM.AIU.Application.Models
-
-@inject SignInManager<ApplicationUser> SignInManager
+﻿@inject SignInManager<ApplicationUser> SignInManager
 @model LoginDTO
-
 @{
     ViewData["Title"] = "Login Page Virtual Campus, Students, Faculty, Staff - Atlantic International University";
     Layout = null;
@@ -24,8 +17,8 @@
     <!-- Page Title  -->
     <title>@ViewData["Title"] - Tutor</title>
     <!-- StyleSheets  -->
-    <link rel="stylesheet" href="~/assets/css/dashlite.css?ver=2.9.1">
-    <link id="skin-default" rel="stylesheet" href="~/assets/css/theme.css?ver=2.9.1">
+    <link rel="stylesheet" href="~/assets/css/admintheme.min.css">
+    <link id="skin-default" rel="stylesheet" href="~/assets/css/theme.css">
 </head>
 
 <body class="nk-body bg-lighter npc-default has-sidebar ">

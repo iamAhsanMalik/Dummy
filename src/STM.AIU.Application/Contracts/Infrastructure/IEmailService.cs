@@ -1,6 +1,8 @@
-﻿namespace STM.AIU.Application.Contracts.Infrastructure;
+﻿using Mailjet.Client.TransactionalEmails.Response;
 
+namespace STM.AIU.Application.Contracts.Infrastructure;
 public interface IEmailService
 {
-  Task SendEmailAsync(string email, string subject, string message);
+    Task<TransactionalEmailResponse> MailJetEmailSenderAsync(MailJetEmailRequest mailJetEmailRequest);
+    Task<string> SMTPEmailSenderAsync(SMTPEmailRequest smtpEmailRequest);
 }

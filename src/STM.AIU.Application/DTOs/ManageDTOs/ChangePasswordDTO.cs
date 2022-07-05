@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace STM.AIU.Application.DTOs.ManageDTOs;
+﻿namespace STM.AIU.Application.DTOs.ManageDTOs;
 
 public class ChangePasswordDTO
 {

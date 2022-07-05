@@ -1,19 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using STM.AIU.Application.Constants;
-using STM.AIU.Application.Contracts.Identity;
-using STM.AIU.Application.Contracts.Infrastructure;
-using STM.AIU.Application.Models;
-using STM.AIU.Infrastructure.Configurations;
-using STM.AIU.Infrastructure.Files;
-using STM.AIU.Infrastructure.Identity.Helpers;
-using STM.AIU.Infrastructure.Identity.Services;
-using STM.AIU.Infrastructure.Persistence;
-using STM.AIU.Infrastructure.Services.Communication.Email;
-using STM.AIU.Infrastructure.Services.Communication.SMS;
-
 namespace STM.AIU.Infrastructure;
 
 public static class InfrastructureServices
@@ -24,7 +8,7 @@ public static class InfrastructureServices
         services.AddDbContext<AIUDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("AiuNetCoreConnection")));
 
-        // Authentication Setting
+        // Authentication Configurations Options
         services.Configure<IdentityOptions>(options =>
         {
             // Password settings.
@@ -43,8 +27,10 @@ public static class InfrastructureServices
             // User settings.
             options.User.AllowedUserNameCharacters = AIUConstants.AllowedUserNameCharacters;
             options.User.RequireUniqueEmail = false;
-        }).AddIdentity<ApplicationUser, IdentityRole>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AIUDbContext>().AddSignInManager().AddDefaultTokenProviders();
-        
+        });
+
+        // Identity Services
+        services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AIUDbContext>().AddDefaultTokenProviders();
 
         services.AddAuthentication()
            .AddFacebook(facebookOptions =>
@@ -68,12 +54,13 @@ public static class InfrastructureServices
            });
 
         services.Configure<MailJetConfig>(configuration.GetSection("MailJet"));
+        services.Configure<SMTPConfig>(configuration.GetSection("SMTPServers"));
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IUserInfo, UserInfo>();
 
         #region Infrastructure
-        services.AddScoped<IEmailService, EmailServices>();
-        services.AddScoped<ISmsService, SMSServices>();
+        services.AddScoped<IEmailService, EmailService>();
+        services.AddScoped<ISmsService, SMSService>();
         services.AddScoped<IFileHelpers, FileHelpers>();
         #endregion
         return services;

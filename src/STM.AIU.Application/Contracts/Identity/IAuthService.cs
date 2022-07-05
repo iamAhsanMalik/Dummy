@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
-using STM.AIU.Application.DTOs.AccountDTOs;
-using STM.AIU.Application.Models;
-
-namespace STM.AIU.Application.Contracts.Identity;
+﻿namespace STM.AIU.Application.Contracts.Identity;
 
 public interface IAuthService
 {

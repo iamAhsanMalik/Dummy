@@ -1,4 +1,5 @@
 ﻿@using STM.AIU.Application.Contracts.Identity
+@model RazorClient.Tutor.Controllers.HomeController.ProductViewModel
 @inject IUserInfo userInfo
 @{
     ViewData["Title"] = "Home Page";
@@ -9,3 +10,24 @@
     <p>Current User Email: @(await userInfo.GetCurrentLoginUserAsync())</p>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@(Html.Kendo().Grid<RazorClient.Tutor.Controllers.HomeController.ProductViewModel>()
+    .Name("Grid")
+    .Columns(columns =>
+    {
+            columns.Bound(p => p.ProductName);
+           columns.Bound(p => p.UnitPrice).Title("Unit Price").Width(150);
+    })
+)
+
+
+<script>
+        function forgeryToken() {
+        var data = $.extend(true,
+            {
+                StudentID: $('#txtStudentID').val()
+            },
+            { __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() });
+        return data;
+    }
+</script>

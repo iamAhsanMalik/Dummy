@@ -12,9 +12,27 @@
     <!-- Page Title  -->
     <title>@ViewData["Title"] - Tutor</title>
     <!-- StyleSheets  -->
-    <link rel="stylesheet" href="~/assets/css/dashlite.css?ver=2.9.1">
-    <link id="skin-default" rel="stylesheet" href="~/assets/css/theme.css?ver=2.9.1">
-</head>
+    @Html.AntiForgeryToken()
+    <script src="https://kendo.cdn.telerik.com/2021.2.616/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2021.2.616/js/jszip.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2021.2.616/js/kendo.all.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2021.2.616/js/kendo.aspnetmvc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.14/js/bootstrap-multiselect.min.js" integrity="sha512-ByDbyutg5bTK+6f4Ke7Fgcg2I2fMUnOdzwC+F/ECFpgde2o2QHRVTFa//oeAHrJuAGX61DPNeKA80KA6V+ca7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="~/assets/css/admintheme.min.css">
+    <link id="skin-default" rel="stylesheet" href="~/assets/css/theme.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://kendo.cdn.telerik.com/2021.2.616/styles/kendo.common-material.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2021.2.616/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2021.2.616/styles/kendo.material.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2021.2.616/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2021.2.616/styles/kendo.common-material.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.14/css/bootstrap-multiselect.css" integrity="sha512-EvvoSMXERW4Pe9LjDN9XDzHd66p8Z49gcrB7LCUplh0GcEHiV816gXGwIhir6PJiwl0ew8GFM2QaIg2TW02B9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
 
 <body class="nk-body bg-lighter npc-default has-sidebar ">
     <div class="nk-app-root">
@@ -29,9 +47,9 @@
         </div>
     </div>
     <!-- Start JavaScript Files - Required for Admin Themes -->
-    <script src="~/assets/js/bundle.js?ver=2.9.1"></script>
-    <script src="~/assets/js/scripts.js?ver=2.9.1"></script>
-    <script src="~/assets/js/charts/chart-ecommerce.js?ver=2.9.1"></script>
+    <script src="~/assets/js/bundle.js"></script>
+    <script src="~/assets/js/scripts.js"></script>
+    <script src="~/assets/js/charts/chart-ecommerce.js"></script>
     <!-- End JavaScript Files - Required for Admin Themes -->
     @await RenderSectionAsync("Scripts", required: false)
 </body>

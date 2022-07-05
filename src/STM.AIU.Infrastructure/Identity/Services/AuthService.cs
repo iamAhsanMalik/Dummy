@@ -1,15 +1,4 @@
-﻿#region Packages Registration
-#endregion
-
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.WebUtilities;
-using STM.AIU.Application.Contracts.Identity;
-using STM.AIU.Application.DTOs.AccountDTOs;
-using STM.AIU.Application.Models;
-using System.Text;
-
-namespace STM.AIU.Infrastructure.Identity.Services;
+﻿namespace STM.AIU.Infrastructure.Identity.Services;
 internal class AuthService : IAuthService
 {
     private readonly UserManager<ApplicationUser> _userManager;

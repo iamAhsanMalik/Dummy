@@ -1,4 +1,6 @@
-﻿<div class="nk-header nk-header-fixed is-light">
+﻿@using STM.AIU.Application.Contracts.Identity
+@inject IUserInfo userInfo
+<div class="nk-header nk-header-fixed is-light">
     <div class="container-fluid">
         <div class="nk-header-wrap">
             <div class="nk-menu-trigger d-xl-none ml-n1">
@@ -15,7 +17,7 @@
             <div class="nk-header-search ml-3 ml-xl-0">
                 <em class="icon ni ni-search"></em>
                 <input type="text" class="form-control border-transparent form-focus-none"
-                    placeholder="Search anything">
+                       placeholder="Search anything">
             </div><!-- .nk-header-news -->
             <div class="nk-header-tools">
                 <ul class="nk-quick-nav">
@@ -48,7 +50,7 @@
                                 <li>
                                     <a href="#" class="language-item">
                                         <img src="~/assets/images/admin/flags/portugal.png" alt=""
-                                            class="language-flag">
+                                             class="language-flag">
                                         <span class="language-name">Português</span>
                                     </a>
                                 </li>
@@ -99,7 +101,7 @@
                                             </div>
                                             <div class="chat-info">
                                                 <div class="chat-from">
-                                                    <div class="name">Abu Bin Ishtiyak</div>
+                                                    <div class="name"></div>
                                                     <span class="time">4:49 AM</span>
                                                 </div>
                                                 <div class="chat-context">
@@ -311,8 +313,8 @@
                                     <em class="icon ni ni-user-alt"></em>
                                 </div>
                                 <div class="user-info d-none d-xl-block">
-                                    <div class="user-status user-status-unverified">Unverified</div>
-                                    <div class="user-name dropdown-indicator">Abu Bin Ishityak</div>
+                                    <div class="user-status user-status-unverified">Welcome</div>
+                                    <div class="user-name dropdown-indicator">@(await userInfo.GetCurrentLoginUserAsync())</div>
                                 </div>
                             </div>
                         </a>
@@ -322,10 +324,10 @@
                                     <div class="user-avatar">
                                         <span>AB</span>
                                     </div>
-                                    <div class="user-info">
-                                        <span class="lead-text">Abu Bin Ishtiyak</span>
-                                        <span class="sub-text">info@softnio.com</span>
-                                    </div>
+                                    @*<div class="user-info">
+                                        <span class="lead-text">@(await userInfo.GetCurrentLoginUserFullNameAsync())</span>
+                                        <span class="sub-text">@(await userInfo.GetCurrentLoginUserAsync())</span>
+                                    </div>*@
                                 </div>
                             </div>
                             <div class="dropdown-inner">
@@ -365,11 +367,15 @@
                                 <ul class="link-list">
                                     <li>
                                         <form method="post" asp-controller="Account" asp-action="Logout">
-                                            <button type="submit"  style="border:none;background: none; color: #526484; font-size: 15px;">
-                                                <em class="icon ni ni-signout"></em><span>
-                                                    Sign
-                                                    out
-                                                </span>
+                                            <button type="submit" class="btn-as-a">
+                                                <em class="icon ni ni-signout">
+                                                    <span>
+                                                        <strong>
+                                                            Sign
+                                                            out
+                                                        </strong>
+                                                    </span>
+                                                </em>
                                             </button>
                                         </form>
                                     </li>

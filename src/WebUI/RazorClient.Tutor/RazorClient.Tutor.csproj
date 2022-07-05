@@ -5,6 +5,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Telerik.UI.for.AspNet.Core" Version="2021.2.616" />
   </ItemGroup>
 
   <ItemGroup>

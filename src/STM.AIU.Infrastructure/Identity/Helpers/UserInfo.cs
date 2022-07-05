@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using STM.AIU.Application.Contracts.Identity;
-using STM.AIU.Application.Models;
-
-namespace STM.AIU.Infrastructure.Identity.Helpers;
+﻿namespace STM.AIU.Infrastructure.Identity.Helpers;
 
 internal class UserInfo : IUserInfo
 {
@@ -21,4 +16,14 @@ internal class UserInfo : IUserInfo
     public async Task<string> GetUserEmailAsync(ApplicationUser user) => await _userManager.GetEmailAsync(user);
     public async Task<string> GetUserPhoneNumberAsync(ApplicationUser user) => await _userManager.GetPhoneNumberAsync(user);
     public async Task<ApplicationUser?> GetCurrentLoginUserAsync() => await _userManager.GetUserAsync(_httpContext.HttpContext?.User);
+    public async Task<string> GetCurrentLoginUserFullNameAsync()
+    {
+        var user = await _userManager.GetUserAsync(_httpContext.HttpContext?.User);
+        return $"{user.FirstName} {user.LastName}";
+    }
+    public async Task<string> GetCurrentLoginUserUserNameAsync()
+    {
+        var user = await _userManager.GetUserAsync(_httpContext.HttpContext?.User);
+        return $"{user.NormalizedUserName}";
+    }
 }

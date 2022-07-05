@@ -2,5 +2,5 @@
 
 public interface ISmsService
 {
-  Task SendSmsAsync(string number, string message);
+  Task SMSSenderAsync(string number, string message);
 }

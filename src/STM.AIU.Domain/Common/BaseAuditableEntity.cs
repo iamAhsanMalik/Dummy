@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace STM.AIU.Domain.Common;
+﻿namespace STM.AIU.Domain.Common;
 internal abstract class BaseAuditableEntity<PrimaryKeyType> : BaseEntity<PrimaryKeyType>
 {
     public DateTime CreatedDate { get; set; }

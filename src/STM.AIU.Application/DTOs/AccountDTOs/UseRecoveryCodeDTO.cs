@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace STM.AIU.Application.DTOs.AccountDTOs;
+﻿namespace STM.AIU.Application.DTOs.AccountDTOs;
 
 public class UseRecoveryCodeDTO
 {
